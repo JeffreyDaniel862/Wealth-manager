@@ -1,0 +1,137 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: radial-gradient(ellipse farthest-corner at -70% 370%, #3c84cc 0%, #90e0ef 80%, white 80%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    width: 500px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    background-color: rgb(255, 255, 255, 0.7);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 5px -5px 20px 2px lightgray, -5px 5px 10px 2px gray;
+}
+
+form:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+h2 {
+    position: absolute;
+    top: 20px;
+    font-size: 3rem;
+    font-family: cursive;
+    font-style: italic;
+    text-align: center;
+}
+
+input {
+    height: 45px;
+    border: none;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 10px;
+    background: transparent;
+    border-bottom: 1px solid rgb(186, 179, 179);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::placeholder{
+    color: black;
+    opacity: 0.3;
+}
+
+input:focus {
+    border-bottom: 2px solid black;
+    outline: none;
+}
+
+label {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+button{
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background-image: none;
+    background-color: black;
+    color: white;
+    box-shadow: 5px 5px 10px 2px gray;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    position: relative;
+    left: 100px;
+}
+
+button:hover{
+    background-image: -webkit-linear-gradient(65deg, white, #90e0ef);
+    color: black;
+    transform: translate(0 ,-5px);
+}
+
+@media (max-width: 525px){
+    form{
+        width: 325px;
+        gap: 20px;
+    }
+
+    h2{
+        font-size: 2rem;
+    }
+}
+
+@media (max-width:300px){
+    h2{
+        font-size: 1.5rem;
+    }
+    form{
+        padding: 20px;
+        width: 250px;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+    }
+    input{
+        height: 30px;
+    }
+    button{
+        left: 40px;
+        width: 100px;
+        font-size: 16px;
+        height: 35px;
+        box-shadow: 2px 1px 10px 3px gray;
+    }
+    label{
+        font-size: 14px;
+    }
+}
+
+@media(max-height:600px){
+    form{
+        grid-template-columns: repeat(4, 1fr);
+        width: 800px;
+    }
+    button{
+        left: 300px;
+
+    }
+}

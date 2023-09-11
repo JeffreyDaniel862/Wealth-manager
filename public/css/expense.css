@@ -1,0 +1,226 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#msg{
+    position: absolute;
+    top: 50px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(6, 182, 240);
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px 2px grey;
+    padding: 10px;
+    animation: hide 1.5s linear 1;
+    opacity: 0;
+}
+
+@keyframes hide {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.main {
+    padding: 20px;
+}
+
+.view {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.view button {
+    border: none;
+    height: 30px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}
+
+.show {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.visible{
+    max-height: 250px;
+    box-shadow: 0px 2px 5px 2px grey;
+}
+
+.hide{
+    display: none;
+}
+
+.table-value {
+    max-height: 200px;
+    overflow: auto;
+}
+
+header {
+    text-align: center;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+thead {
+    background-color: black;
+    height: 30px;
+    color: white;
+    box-shadow: 0px 2px 5px 2px grey;
+    border-radius: 10px;
+
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: black;
+
+}
+
+tr {
+    height: 30px;  
+}
+
+tbody td{  
+    border-bottom: 0.5px rgb(177, 172, 172) solid;
+}
+
+tbody tr:hover{
+    background-color: #3c84cc;
+    box-shadow: 0px 2px 5px 2px lightgrey;
+}
+
+tbody {
+    border-radius: 10px;
+    box-shadow: 0px 3px 5px 2px grey;
+
+}
+
+form {
+    width: 500px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    background-color: rgb(255, 255, 255, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px 2px gray;
+}
+
+form:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+input {
+    height: 30px;
+    border: none;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 10px;
+    background: transparent;
+    border-bottom: 1px solid rgb(186, 179, 179);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input::placeholder {
+    color: black;
+    opacity: 0.3;
+}
+
+input:focus {
+    border-bottom: 2px solid black;
+    outline: none;
+}
+
+label {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.add {
+    font-size: 30px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.add:hover{
+    width: 45px;
+    transform: translateY(-5px);
+}
+
+.cancel img{
+    width: 28px;
+    align-content: center;
+}
+
+.cancel{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: red;
+    border: none;
+}
+
+.cancel:hover{
+    transform: translateY(-5px);
+    width: 45px;
+}
+
+@media (max-width:530px){
+    form{
+        width: 325px;
+    }
+}
+
+@media (max-width:280px){
+    form{
+        width: 250px;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+
+    label{
+        /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 14px; */
+        display: none;
+    }
+    
+    .cancel{
+        display: none;
+    }
+}

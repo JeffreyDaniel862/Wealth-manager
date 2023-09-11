@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo1.png" type="image/png">
+    <title>jd</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <a href="/"><img src="images/logo2.png" class="home" alt=""></a>
+    <% if (locals.err) { %>
+        <h3 id="error">⚠️ <%= err[(err.length)-1] %></h3>
+       <% } %>
+    <div class="content">
+        <img src="images/login.jpg" alt="" class="side">
+        <form action="/login" method="post">
+            <img src="images/logo2.png" alt="" id="spin">
+            <h2>Login</h2>
+            <input type="text" placeholder="Username" name="username" autocomplete="off">
+            <input type="password" placeholder="Password" name="password">
+            <button type="submit">Login</button>
+            <p>Not Registered? <a href="/register">Register</a></p>
+        </form>
+    </div>
+</body>
+
+</html>

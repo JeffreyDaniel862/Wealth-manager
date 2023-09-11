@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo2.png" type="image/png">
+    <title>jd</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+    <%- include('nav') %>
+        <div class="content" id="blur">
+            <p class="key">Name </p>
+            <h3>_</h3>
+            <p class="value">
+                <%= user.firstname %>
+                    <%= user.lastname %>
+            </p>
+            <p class="key">Job </p>
+            <h3>_</h3>
+            <p class="value">
+                <%= user.job %> 
+            </p>
+            <p class="key">Date of Birth </p> 
+            <h3>_</h3>
+            <p class="value">
+                <%= user.dob %> 
+            </p>
+            <p class="key">Wallet </p>
+            <h3>_</h3>
+            <p class="value">
+                <%= user.salary %> 
+            </p>
+            <p class="key">Salary </p>
+            <h3>_</h3>
+            <p class="value" id="limit">
+                <%= user.limit %>
+            </p>
+            <img src="images/edit.png" alt="" onclick="showHide()" id="image" >
+        </div>
+        
+        <form action="/profile" method="post" class="edit hide" id="forms">
+            <label for="fname">Firstname:</label>
+            <input type="text" name="fname" id="fname" value=" <%= user.firstname %>" required>
+        
+            <label for="lname">Lastname:</label>
+            <input type="text" name="lname" id="lname" value=" <%= user.lastname %>" required>
+     
+            <label for="job">Job:</label>
+            <input type="text" name="job" id="job" value="<%= user.job %>" required>
+        
+            <label for="dob">Date of Birth:</label>
+            <input type="date" name="dob" id="dob" value="<%= user.dob %>" required>
+
+            <label for="salary">Wallet:</label>
+            <input type="text" name="salary" id="salary" value=" <%= user.salary %>" required>
+            
+            <label for="limit">Salary:</label>
+            <input type="text" id="limit" name="limit"  value=" <%= user.limit %>" required>
+            <a href="/profile"><img src="images/cancel.png" alt="" class="cancel" onclick="showHide()"></a>
+            <button type="submit" ><img src="images/ok.png" alt="" class=" ok"></button>
+        </form>
+
+
+
+
+
+        <script src="nav.js"></script>
+
+        <script>
+            const content = document.getElementById("blur");
+            const forms = document.getElementById("forms")
+
+            function showHide(){
+                content.classList.toggle("hide");
+                forms.classList.toggle("hide");
+            }
+        </script>
+</body>
+
+</html>

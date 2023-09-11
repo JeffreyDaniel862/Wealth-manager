@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo2.png" type="image/png">
+    <title>jd</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/report.css">
+</head>
+<body>
+    <%- include('nav') %>
+    <div class="tables hide" id="blur">
+        <h2>Trancations:</h2>
+        <table>
+            <thead>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Expense Name
+                </th>
+                <th>
+                    Amount
+                </th>
+            </thead>
+            <tbody>
+                <% if (locals.transcations) { %>
+                    <% transcations.forEach(transcation => { %>
+                        <tr>
+                            <td><%= transcation.expdate %>/<%= transcation.expmonth %>/<%= transcation.expyear %></td>
+                            <td><%= transcation.expensename %></td>
+                            <td><%= transcation.amount %></td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <script src="nav.js"></script>
+</body>
+</html>

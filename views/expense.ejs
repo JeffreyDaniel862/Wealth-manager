@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo2.png" type="image/png">
+    <title>jd</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/expense.css">
+</head>
+
+<body>
+    <%- include('nav') %>
+        <div class="content" id="blur">
+            <% if (locals.msg) { %>
+                <h3 id="msg">⚠️ <%= msg %></h3>
+               <% } %>
+            <div class="main">
+                <div class="view">
+                    <button id="showbutton" onclick="showhide()" class="">Show Expense</button>
+                    <button id="hidebutton" onclick="hideshow()" class="hide">Hide Expense</button>
+                </div>
+                <div class="show " id="show">
+                    <header>
+                        <h2><%= date %></h2>
+                    </header>
+                    <div class="table-value">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Expense Name</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (locals.expenses) { %>
+                                    <% expenses.forEach(expense => { %>
+                                        <tr>
+                                            <td><%= expense.expensename %></td>
+                                            <td><%= expense.category %></td>
+                                            <td><%= expense.amount %></td>
+                                        </tr>
+                                    <% }) %>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <form action="/expense" method="post">
+                    <label for="expensename">Expense Name:</label>
+                    <input type="text" id="expensename" name="expensename" placeholder="Expense Name" required>
+                    <label for="category">Expense Category:</label>
+                    <input type="text" id="category" name="category" placeholder="Category" required>
+                    <label for="amount">Amount :</label>
+                    <input type="number" id="amount" name="amount" placeholder="Expense Amount" required>
+                    <button type="reset" class="cancel"><img src="images/cancel.png" alt=""></button>
+                    <button type="submit" class="add">+</button>
+                </form>
+            </div>
+        </div>
+
+        <script src="nav.js"></script>
+        <script>
+            const showButton = document.getElementById("showbutton");
+            const hideButton = document.getElementById("hidebutton")
+            const showTranscation = document.getElementById("show");
+
+            function showhide(){
+                showTranscation.classList.toggle("visible");
+                showButton.classList.add("hide");
+                hideButton.classList.remove("hide");
+            }
+
+            function hideshow(){
+                showTranscation.classList.toggle("visible");
+                hideButton.classList.add("hide");
+                showButton.classList.remove("hide");
+            }
+        </script>
+</body>
+
+</html>
