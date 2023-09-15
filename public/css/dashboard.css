@@ -81,7 +81,7 @@
 }
 
 #chart{
-    width: 80%;
+    width: 100%;
     height: 90%;
 }
 
@@ -132,9 +132,9 @@ tr:hover{
 }
 
 .inex:hover{
- border-radius: 20px;
- background-color: #90e0ef;
- box-shadow: 2px 2px 10px 2px grey;
+ border-radius: 10px;
+ background-color: rgb(144, 224, 239, 0.3);
+ box-shadow: 0px 2px 5px 2px grey;
 }
 
 .ex{
@@ -157,6 +157,7 @@ tr:hover{
 
 #chart1{
     width: 90%;
+    height: 90%;
 }
 
 
@@ -181,16 +182,17 @@ tr:hover{
         grid-row: 2 / 4;
     }
     .category{
-        grid-column: 1/4;
+        grid-column: 1/7;
         grid-row: 4 / 6;
         margin-right: 0;
         overflow: auto;
     }
    
     .graph{
-        grid-column: 4 / 7;
-        grid-row: 4 / 6;
+        grid-column: 1 / 7;
+        grid-row: 6 / 8;
         margin-right: 0;
+        overflow: auto;
     }
 }
 
@@ -206,7 +208,16 @@ tr:hover{
     }
 }
 
-@media (max-width:550px){
+@media (max-width:540px){
+    .amount h1{
+        font-size: 2rem;
+    }
+    /* .profile{
+        font-size: 16px;
+    }
+    .profile img{
+        width: 40px;
+    } */
 
 }
 
@@ -230,11 +241,11 @@ tr:hover{
     }
     .graph{
         margin-right: 0;
-        min-height: 200px;
+        min-height: 300px;
         overflow: hidden;
     }
     .category{
-        min-height: 200px;
+        min-height: 250px;
         margin-right: 0;
     }
 }

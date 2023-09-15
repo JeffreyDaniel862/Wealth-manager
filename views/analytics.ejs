@@ -86,12 +86,10 @@
 
             let month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
-            let monthArray = [];
-            let amountArray = [];
+            let amountArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             var graphData = JSON.parse(graph)
             graphData.forEach(graphD => {
-                amountArray.push(graphD.total)
-                monthArray.push(month[(graphD._id.month) - 1])
+                amountArray.splice((graphD._id.month)-1, 1, graphD.total);
             })
 
             var options = {
@@ -100,7 +98,7 @@
                 }],
                 chart: {
                     type: 'bar',
-                    height: 250
+                    height: 350
                 },
                 annotations: {
                     xaxis: [{
@@ -132,7 +130,7 @@
                     enabled: true
                 },
                 xaxis: {
-                    categories: monthArray,
+                    categories: month,
                 },
                 grid: {
                     xaxis: {

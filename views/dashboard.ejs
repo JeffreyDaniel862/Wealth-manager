@@ -20,11 +20,13 @@
                 <div class="cash">
                     <% if (totalexpense=="" ) { %>
                         <h3 class="light">Expense: ₹ 0</h3>
-                        <h3 class="light">Total: ₹ <%= (userdetail.salary) %></h3>
+                        <h3 class="light">Total: ₹ <%= (userdetail.salary) %>
+                        </h3>
                         <% } else { %>
                             <h3 class="light">Expense: ₹ <%= totalexpense[0].total %>
                             </h3>
-                            <h3 class="light">Total: ₹ <%= (userdetail.salary) + (totalexpense[0].total) %></h3>
+                            <h3 class="light">Total: ₹ <%= (userdetail.salary) + (totalexpense[0].total) %>
+                            </h3>
                             <% } %>
                 </div>
             </div>
@@ -54,21 +56,15 @@
                         </p>
                     </div>
                     <% }) %>
-                        <!-- <div class="inex">
-                <div class="in">
-                    <p class="ex">Car Wash</p>
-                    <p class="exdate">24, Aug 23</p>
-                </div>
-                <p class="ex">$400</p>
-            </div> -->
+
             </div>
             <div class="category box">
                 <div id="chart1">
                 </div>
             </div>
             <div class="graph box">
-                <h3 style="font-family: 'Courier New', Courier, monospace; text-align: center;">Expense Graph:</h3>
                 <div id="chart">
+                    <h3 style="font-family: 'Courier New', Courier, monospace; text-align: center;">Expense Graph:</h3>
                 </div>
             </div>
 
@@ -76,35 +72,43 @@
         <script src="nav.js"></script>
         <script type="text/javascript">
 
+            // chart 
 
             var graph = ('<%-JSON.stringify(graphData) %>')
 
             let month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
-            let monthArray = [];
-            let amountArray = [];
+            let amountArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             var graphData = JSON.parse(graph)
             graphData.forEach(graphD => {
-                amountArray.push(graphD.total)
-                monthArray.push(month[(graphD._id.month)-1])
+                amountArray.splice((graphD._id.month) - 1, 1, graphD.total);
             })
-
             var options = {
-                chart: {
-                    type: 'bar'
-                },
                 series: [{
-                    name: 'Expense',
                     data: amountArray
                 }],
+                chart: {
+                    type: 'bar',
+                    height: 250
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 4,
+                        horizontal: true,
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
                 xaxis: {
-                    categories: monthArray
+                    categories: month
                 }
-            }
+            };
 
             var chart = new ApexCharts(document.querySelector("#chart"), options);
-
             chart.render();
+
+            //chart 1
 
             var categories = ('<%-JSON.stringify(categoryData) %>')
 
@@ -140,7 +144,7 @@
                     '#f48024', '#69d2e7'
                 ],
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                     textAnchor: 'start',
                     style: {
                         colors: ['#fff']
