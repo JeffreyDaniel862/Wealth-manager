@@ -62,6 +62,7 @@ const expenseschema = new mongoose.Schema({
 
 const Expense = mongoose.model("Expense", expenseschema);
 
+var name;
 
 app.route("/")
     .get((req, res) => {
@@ -111,7 +112,7 @@ app.route("/profile")
     .get(async (req, res) => {
         if (req.isAuthenticated()) {
             const user = await User.findById(req.user.id)
-            res.render("profile", { user: user })
+            res.render("profile", { user: user, name: name })
         } else {
             res.redirect("/login");
         }
@@ -140,6 +141,8 @@ app.get("/dashboard", async (req, res) => {
 
         const userDetail = await User.findOne({ _id: req.user.id }, "salary firstname lastname job")
         // console.log(userDetail)
+
+        name = userDetail.firstname;
 
         const totalExpenses = await Expense.aggregate([
             { $match: { user: req.user.id } }, // filter by user
@@ -177,7 +180,7 @@ app.get("/dashboard", async (req, res) => {
             }
         ])
 
-        res.render("dashboard", { transcations: transcations, userdetail: userDetail, totalexpense: totalExpenses, graphData: graphData, categoryData: categoryGraph });
+        res.render("dashboard", { transcations: transcations, userdetail: userDetail, totalexpense: totalExpenses, graphData: graphData, categoryData: categoryGraph, name: name  });
     } else {
         res.redirect("/login");
     }
@@ -194,7 +197,7 @@ app.route("/expense")
             ]).exec();
             // console.log(expensedata);
             const today = getDate();
-            res.render("expense", { expenses: expensedata, date: today });
+            res.render("expense", { expenses: expensedata, date: today, name: name  });
             // console.log(getDate());
         } else {
             res.redirect("/login")
@@ -228,7 +231,7 @@ app.route("/expense")
                     { $project: { expdate: { $dayOfMonth: "$expensedate" }, expensename: 1, amount: 1, category: 1 } },
                     { $match: { expdate: { $eq: new Date().getDate() } } }
                 ]).exec();
-                res.render("expense", { msg: msg, date: today, expenses: expensedata })
+                res.render("expense", { msg: msg, date: today, expenses: expensedata, name: name  })
             })
     })
 
@@ -266,7 +269,7 @@ app.route("/analytics")
                 { $sort: { _id: 1 } }
             ]);
 
-            res.render("analytics", { graphData: graphData, categoryData: categoryGraph, dailygraphData: dailygraphData })
+            res.render("analytics", { graphData: graphData, categoryData: categoryGraph, dailygraphData: dailygraphData, name: name  })
         } else {
             res.redirect("/login")
         }
@@ -280,7 +283,7 @@ app.route("/report")
                 { $project: { expyear: { $year: "$expensedate" }, expmonth: { $month: "$expensedate" }, expdate: { $dayOfMonth: "$expensedate" }, expensename: 1, amount: 1 } },
                 { $sort: { expmonth: -1 , expdate: -1 } }
             ]).exec();
-            res.render("report", { transcations: transcations })
+            res.render("report", { transcations: transcations, name: name  })
         } else {
             res.redirect("/login")
         }
